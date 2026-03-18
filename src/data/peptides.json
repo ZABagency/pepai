@@ -1,0 +1,233 @@
+[
+  {
+    "id": "bpc-157",
+    "name": "BPC-157",
+    "primaryGoal": ["recovery", "gut"],
+    "tags": ["recovery", "injury", "gut health"],
+    "difficulty": "beginner",
+    "method": "injection",
+    "shortDescription": "A powerhouse recovery peptide that accelerates healing from injuries and supports gut health.",
+    "whatItIs": "BPC-157 (Body Protection Compound) is a synthetic peptide derived from a protein found in human gastric juice. It has been studied extensively for its remarkable healing properties.",
+    "howItWorks": "It promotes the formation of new blood vessels (angiogenesis), which speeds up tissue repair and reduces inflammation. It also protects and heals the gut lining.",
+    "goals": ["Injury recovery", "Tendon and ligament repair", "Gut health and leaky gut", "Reducing inflammation"],
+    "dosing": "250–500 mcg per day, injected subcutaneously near the injury site or taken orally for gut issues.",
+    "cycleLength": "4–12 weeks depending on injury severity",
+    "weekByWeek": [
+      "Week 1–2: Reduced soreness and inflammation",
+      "Week 3–4: Noticeable improvement in injury or gut discomfort",
+      "Week 6+: Significant tissue repair and recovery"
+    ],
+    "bestFor": "Athletes recovering from injuries, people with gut issues like IBS or leaky gut",
+    "commonStacks": ["tb-500", "ipamorelin"]
+  },
+  {
+    "id": "tb-500",
+    "name": "TB-500",
+    "primaryGoal": ["recovery"],
+    "tags": ["recovery", "tissue repair", "flexibility"],
+    "difficulty": "beginner",
+    "method": "injection",
+    "shortDescription": "Promotes systemic tissue repair and flexibility — great for chronic injuries.",
+    "whatItIs": "TB-500 is a synthetic version of Thymosin Beta-4, a naturally occurring protein in the body that plays a key role in tissue repair.",
+    "howItWorks": "It promotes cell migration and proliferation, helping the body repair damaged tissue anywhere in the body — not just at the injection site.",
+    "goals": ["Systemic tissue repair", "Flexibility improvement", "Chronic injury healing", "Reducing inflammation"],
+    "dosing": "2–2.5 mg twice per week for the first 4–6 weeks (loading phase), then 2–2.5 mg once per week.",
+    "cycleLength": "8–12 weeks",
+    "weekByWeek": [
+      "Week 1–2: Improved flexibility and reduced stiffness",
+      "Week 3–4: Noticeable reduction in chronic pain",
+      "Week 6+: Substantial tissue repair"
+    ],
+    "bestFor": "People with chronic injuries or recurring pain who want systemic healing",
+    "commonStacks": ["bpc-157"]
+  },
+  {
+    "id": "ipamorelin",
+    "name": "Ipamorelin",
+    "primaryGoal": ["sleep", "bodycomp"],
+    "tags": ["sleep", "growth hormone", "body composition"],
+    "difficulty": "beginner",
+    "method": "injection",
+    "shortDescription": "A gentle growth hormone releaser that improves sleep quality and body composition.",
+    "whatItIs": "Ipamorelin is a growth hormone secretagogue — it tells your pituitary gland to release growth hormone in a natural, pulsatile way.",
+    "howItWorks": "It binds to ghrelin receptors, triggering GH release without the spikes in cortisol or appetite that other GH releasers can cause. Very clean and well-tolerated.",
+    "goals": ["Better sleep quality", "Increased lean muscle", "Fat loss", "Anti-aging"],
+    "dosing": "200–300 mcg before bed, injected subcutaneously.",
+    "cycleLength": "8–12 weeks",
+    "weekByWeek": [
+      "Week 1–2: Improved sleep depth and recovery",
+      "Week 3–4: Increased energy and better body composition",
+      "Week 8+: Noticeable changes in muscle tone and fat"
+    ],
+    "bestFor": "People who want better sleep and gradual body composition improvements without aggressive GH therapy",
+    "commonStacks": ["cjc-1295", "bpc-157"]
+  },
+  {
+    "id": "cjc-1295",
+    "name": "CJC-1295",
+    "primaryGoal": ["bodycomp"],
+    "tags": ["body composition", "growth hormone", "muscle"],
+    "difficulty": "intermediate",
+    "method": "injection",
+    "shortDescription": "Amplifies growth hormone output for muscle gain and fat loss — typically stacked with Ipamorelin.",
+    "whatItIs": "CJC-1295 is a GHRH (Growth Hormone Releasing Hormone) analog that extends the half-life of your body's natural GH pulses.",
+    "howItWorks": "It amplifies the natural GH pulses already happening in your body, leading to sustained higher GH and IGF-1 levels over time.",
+    "goals": ["Muscle growth", "Fat loss", "Improved recovery", "Anti-aging"],
+    "dosing": "1–2 mg per week, typically split into smaller doses. Almost always combined with Ipamorelin.",
+    "cycleLength": "8–16 weeks",
+    "weekByWeek": [
+      "Week 1–2: Better sleep and recovery",
+      "Week 4–6: Noticeable muscle fullness and fat changes",
+      "Week 8+: Significant body composition improvements"
+    ],
+    "bestFor": "People serious about body composition who want more pronounced GH benefits than Ipamorelin alone",
+    "commonStacks": ["ipamorelin"]
+  },
+  {
+    "id": "aod-9604",
+    "name": "AOD-9604",
+    "primaryGoal": ["fatloss"],
+    "tags": ["fat loss", "metabolism", "weight"],
+    "difficulty": "beginner",
+    "method": "injection",
+    "shortDescription": "A targeted fat-burning peptide derived from HGH — without the side effects.",
+    "whatItIs": "AOD-9604 is a modified fragment of human growth hormone specifically designed to target fat metabolism.",
+    "howItWorks": "It mimics the way natural growth hormone regulates fat metabolism — stimulating lipolysis (fat breakdown) and inhibiting lipogenesis (fat creation).",
+    "goals": ["Targeted fat loss", "Improved metabolism", "Weight management"],
+    "dosing": "300 mcg per day, injected subcutaneously in the morning on an empty stomach.",
+    "cycleLength": "12–16 weeks",
+    "weekByWeek": [
+      "Week 1–2: Increased energy and appetite regulation",
+      "Week 4–6: Noticeable reduction in stubborn fat",
+      "Week 12+: Significant fat loss results"
+    ],
+    "bestFor": "People struggling with stubborn fat who are already eating well and exercising",
+    "commonStacks": ["ipamorelin", "cjc-1295"]
+  },
+  {
+    "id": "semax",
+    "name": "Semax",
+    "primaryGoal": ["cognitive"],
+    "tags": ["cognitive", "focus", "neuroprotection"],
+    "difficulty": "intermediate",
+    "method": "nasal",
+    "shortDescription": "A Russian-developed nootropic peptide that sharpens focus and protects the brain.",
+    "whatItIs": "Semax is a synthetic peptide derived from ACTH, originally developed in Russia for stroke recovery. Now widely used as a cognitive enhancer.",
+    "howItWorks": "It increases BDNF (brain-derived neurotrophic factor), enhances dopamine and serotonin activity, and has neuroprotective effects.",
+    "goals": ["Mental clarity and focus", "Memory and learning", "Neuroprotection", "Mood enhancement"],
+    "dosing": "300–600 mcg per day intranasally (nasal drops). No injection required.",
+    "cycleLength": "4–8 weeks with breaks",
+    "weekByWeek": [
+      "Day 1–3: Noticeable increase in focus and mental clarity",
+      "Week 1–2: Improved mood and motivation",
+      "Week 4+: Enhanced memory and cognitive performance"
+    ],
+    "bestFor": "Knowledge workers, students, or anyone wanting a cognitive edge without stimulants",
+    "commonStacks": ["selank"]
+  },
+  {
+    "id": "selank",
+    "name": "Selank",
+    "primaryGoal": ["anxiety"],
+    "tags": ["anxiety", "stress", "mood", "cognitive"],
+    "difficulty": "beginner",
+    "method": "nasal",
+    "shortDescription": "A calming nootropic peptide that reduces anxiety without sedation.",
+    "whatItIs": "Selank is a synthetic peptide based on the immune peptide Tuftsin, developed in Russia as an anxiolytic (anti-anxiety) compound.",
+    "howItWorks": "It modulates GABA receptors and increases serotonin and dopamine activity, producing a calm, focused state without sedation or dependence.",
+    "goals": ["Anxiety reduction", "Stress resilience", "Improved mood", "Mental calm with clarity"],
+    "dosing": "250–500 mcg per day intranasally (nasal drops).",
+    "cycleLength": "2–4 weeks on, 1–2 weeks off",
+    "weekByWeek": [
+      "Day 1: Noticeable calming effect within hours",
+      "Week 1–2: Reduced baseline anxiety and better stress response",
+      "Week 3–4: Improved overall mood and social ease"
+    ],
+    "bestFor": "People dealing with anxiety, high stress, or wanting calm focus without pharmaceuticals",
+    "commonStacks": ["semax"]
+  },
+  {
+    "id": "dsip",
+    "name": "DSIP",
+    "primaryGoal": ["sleep"],
+    "tags": ["sleep", "deep sleep", "recovery"],
+    "difficulty": "beginner",
+    "method": "injection",
+    "shortDescription": "Delta Sleep-Inducing Peptide — naturally improves deep sleep quality.",
+    "whatItIs": "DSIP (Delta Sleep-Inducing Peptide) is a naturally occurring neuropeptide that promotes deep, restorative sleep.",
+    "howItWorks": "It modulates delta brain wave activity — the brain state associated with deep, restorative sleep — and also has mild stress-reducing effects.",
+    "goals": ["Deeper sleep", "Faster sleep onset", "Improved recovery", "Stress reduction"],
+    "dosing": "100–500 mcg before bed, injected subcutaneously.",
+    "cycleLength": "2–4 weeks as needed",
+    "weekByWeek": [
+      "Night 1–3: Noticeably deeper and more restful sleep",
+      "Week 1–2: Better morning energy and mood",
+      "Week 3–4: Improved overall recovery and stress levels"
+    ],
+    "bestFor": "People with poor sleep quality, insomnia, or high-stress lifestyles",
+    "commonStacks": ["ipamorelin", "selank"]
+  },
+  {
+    "id": "epithalon",
+    "name": "Epithalon",
+    "primaryGoal": ["antiaging"],
+    "tags": ["anti-aging", "longevity", "sleep", "telomeres"],
+    "difficulty": "intermediate",
+    "method": "injection",
+    "shortDescription": "A longevity peptide that activates telomerase and improves sleep — popular in anti-aging circles.",
+    "whatItIs": "Epithalon is a tetrapeptide (4 amino acids) developed by Russian scientist Vladimir Khavinson. It's considered one of the most promising longevity compounds.",
+    "howItWorks": "It activates telomerase, an enzyme that repairs and extends telomeres (the protective caps on DNA). Longer telomeres are associated with longer healthspan.",
+    "goals": ["Anti-aging and longevity", "Improved sleep", "Enhanced immunity", "DNA protection"],
+    "dosing": "5–10 mg per day for 10–20 days, then a long break (several months). Run 1–2 cycles per year.",
+    "cycleLength": "10–20 days per cycle, 1–2x per year",
+    "weekByWeek": [
+      "Days 1–5: Improved sleep quality",
+      "Days 6–10: Increased energy and wellbeing",
+      "Months later: Long-term anti-aging and cellular health benefits"
+    ],
+    "bestFor": "Health-conscious individuals focused on longevity and long-term cellular health",
+    "commonStacks": ["ipamorelin", "ghk-cu"]
+  },
+  {
+    "id": "ghk-cu",
+    "name": "GHK-Cu",
+    "primaryGoal": ["skin"],
+    "tags": ["skin", "hair", "collagen", "anti-aging"],
+    "difficulty": "beginner",
+    "method": "topical",
+    "shortDescription": "A copper peptide that visibly improves skin, hair, and collagen — popular in skincare.",
+    "whatItIs": "GHK-Cu (Copper Peptide) is a naturally occurring copper complex found in human blood plasma. It's widely used in high-end skincare products.",
+    "howItWorks": "It stimulates collagen and elastin production, promotes wound healing, activates antioxidant enzymes, and has anti-inflammatory properties.",
+    "goals": ["Skin tightening and anti-aging", "Wrinkle reduction", "Hair growth and thickness", "Wound healing"],
+    "dosing": "Applied topically as a serum or cream, 1–2x daily. Can also be injected for more pronounced effects.",
+    "cycleLength": "Ongoing use as part of skincare routine",
+    "weekByWeek": [
+      "Week 1–2: Improved skin texture and hydration",
+      "Week 4–6: Visible reduction in fine lines",
+      "Week 8+: Significant collagen and skin quality improvement"
+    ],
+    "bestFor": "Anyone interested in skin health, anti-aging skincare, or hair improvement",
+    "commonStacks": ["epithalon"]
+  },
+  {
+    "id": "nad-plus",
+    "name": "NAD+",
+    "primaryGoal": ["energy"],
+    "tags": ["energy", "longevity", "cellular repair", "metabolism"],
+    "difficulty": "beginner",
+    "method": "injection",
+    "shortDescription": "A cellular energy molecule that fuels mitochondria and supports longevity.",
+    "whatItIs": "NAD+ (Nicotinamide Adenine Dinucleotide) is a coenzyme found in every cell of the body. Levels decline with age, contributing to fatigue and aging.",
+    "howItWorks": "It powers mitochondrial function (your cells' energy factories), activates sirtuins (longevity proteins), and supports DNA repair.",
+    "goals": ["Increased energy and stamina", "Mental clarity", "Cellular repair and longevity", "Metabolism support"],
+    "dosing": "250–500 mg IV or 100–300 mg subcutaneous injection. Oral NMN/NR are precursors and a cheaper alternative.",
+    "cycleLength": "Ongoing or monthly IV sessions",
+    "weekByWeek": [
+      "Day 1: Significant energy boost (especially IV)",
+      "Week 1–2: Improved mental clarity and physical stamina",
+      "Month 1+: Long-term cellular health and energy improvements"
+    ],
+    "bestFor": "People experiencing fatigue, brain fog, or focused on longevity and cellular health",
+    "commonStacks": ["epithalon", "ipamorelin"]
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "limitless-life",
+    "name": "Limitless Life Nootropics",
+    "qualityTier": "research",
+    "rating": 4.8,
+    "priceRange": "$$",
+    "description": "One of the most trusted names in the research peptide community. Strong reputation, third-party testing, wide selection.",
+    "strengths": ["Wide selection", "Third-party tested", "Strong community reputation"],
+    "peptides": ["bpc-157", "tb-500", "ipamorelin", "cjc-1295", "semax", "selank", "dsip", "epithalon", "aod-9604"],
+    "affiliateBase": "https://limitlesslifenootrpics.com",
+    "utmSource": "peptideiq",
+    "utmMedium": "affiliate"
+  },
+  {
+    "id": "peptide-sciences",
+    "name": "Peptide Sciences",
+    "qualityTier": "research",
+    "rating": 4.7,
+    "priceRange": "$$",
+    "description": "Well-established vendor with consistent quality and a solid track record in the research peptide space.",
+    "strengths": ["Consistent quality", "Good pricing", "Fast shipping"],
+    "peptides": ["bpc-157", "tb-500", "ipamorelin", "cjc-1295", "aod-9604", "ghk-cu", "nad-plus"],
+    "affiliateBase": "https://peptidesciences.com",
+    "utmSource": "peptideiq",
+    "utmMedium": "affiliate"
+  },
+  {
+    "id": "biotech-peptides",
+    "name": "Biotech Peptides",
+    "qualityTier": "research",
+    "rating": 4.5,
+    "priceRange": "$",
+    "description": "Competitive pricing makes this a popular choice for those looking to get started without breaking the bank.",
+    "strengths": ["Best pricing", "Good selection", "Reliable shipping"],
+    "peptides": ["bpc-157", "tb-500", "ipamorelin", "cjc-1295", "aod-9604", "epithalon", "ghk-cu"],
+    "affiliateBase": "https://biotechpeptides.com",
+    "utmSource": "peptideiq",
+    "utmMedium": "affiliate"
+  }
+]

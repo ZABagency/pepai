@@ -1,0 +1,76 @@
+{
+  "questions": [
+    {
+      "id": "goal",
+      "question": "What's your primary health goal?",
+      "subtitle": "Pick the one that matters most to you right now.",
+      "type": "single",
+      "options": [
+        { "value": "recovery", "label": "Injury Recovery & Healing", "emoji": "🩹" },
+        { "value": "bodycomp", "label": "Muscle & Body Composition", "emoji": "💪" },
+        { "value": "sleep", "label": "Better Sleep & Recovery", "emoji": "😴" },
+        { "value": "cognitive", "label": "Focus & Mental Performance", "emoji": "🧠" },
+        { "value": "fatloss", "label": "Fat Loss & Metabolism", "emoji": "🔥" },
+        { "value": "antiaging", "label": "Anti-Aging & Longevity", "emoji": "⏳" },
+        { "value": "anxiety", "label": "Stress & Anxiety Relief", "emoji": "🧘" },
+        { "value": "skin", "label": "Skin, Hair & Collagen", "emoji": "✨" },
+        { "value": "energy", "label": "Energy & Cellular Health", "emoji": "⚡" }
+      ]
+    },
+    {
+      "id": "experience",
+      "question": "How familiar are you with peptides?",
+      "subtitle": "Be honest — this helps us match you to the right starting point.",
+      "type": "single",
+      "options": [
+        { "value": "none", "label": "Never used them, complete beginner", "emoji": "👶" },
+        { "value": "some", "label": "Done some research, haven't started", "emoji": "📚" },
+        { "value": "used", "label": "I've used peptides before", "emoji": "✅" }
+      ]
+    },
+    {
+      "id": "injection",
+      "question": "Are you comfortable with self-injection?",
+      "subtitle": "Some peptides require a small subcutaneous injection (like an insulin shot). Others are nasal spray or topical.",
+      "type": "single",
+      "options": [
+        { "value": "yes", "label": "Yes, I'm fine with injections", "emoji": "💉" },
+        { "value": "maybe", "label": "I'd try it with proper guidance", "emoji": "🤔" },
+        { "value": "no", "label": "No, I prefer non-injectable options", "emoji": "🙅" }
+      ]
+    },
+    {
+      "id": "budget",
+      "question": "What's your monthly budget for peptides?",
+      "subtitle": "This helps us recommend the right vendors and protocols.",
+      "type": "single",
+      "options": [
+        { "value": "low", "label": "Under $100/month", "emoji": "💵" },
+        { "value": "medium", "label": "$100–$250/month", "emoji": "💰" },
+        { "value": "high", "label": "$250+ per month", "emoji": "💎" }
+      ]
+    },
+    {
+      "id": "timeline",
+      "question": "When do you want to start seeing results?",
+      "subtitle": "Some peptides work fast, others build over months.",
+      "type": "single",
+      "options": [
+        { "value": "fast", "label": "ASAP — I want quick results", "emoji": "⚡" },
+        { "value": "steady", "label": "I'm patient, I want steady progress", "emoji": "📈" },
+        { "value": "longterm", "label": "I'm playing the long game", "emoji": "🎯" }
+      ]
+    }
+  ],
+  "recommendations": {
+    "recovery": ["bpc-157", "tb-500"],
+    "bodycomp": ["cjc-1295", "ipamorelin"],
+    "sleep": ["ipamorelin", "dsip"],
+    "cognitive": ["semax", "selank"],
+    "fatloss": ["aod-9604", "cjc-1295"],
+    "antiaging": ["epithalon", "ghk-cu"],
+    "anxiety": ["selank", "semax"],
+    "skin": ["ghk-cu", "epithalon"],
+    "energy": ["nad-plus", "ipamorelin"]
+  }
+}
