@@ -14,6 +14,7 @@ const navy = "#1A1A2E";
 const dark = "#111111";
 const muted = "#888888";
 const border = "#E8E8E8";
+const amber = "#B45309";
 
 type Peptide = typeof peptides[0];
 type Vendor = typeof vendors[0];
@@ -133,7 +134,6 @@ function SaveModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void }) 
           position: "absolute", top: "16px", right: "16px", background: "none", border: "none",
           fontSize: "20px", cursor: "pointer", color: muted, lineHeight: 1, padding: "4px",
         }}>×</button>
-
         {saved ? (
           <div style={{ textAlign: "center", padding: "16px 0" }}>
             <div style={{ fontSize: "28px", marginBottom: "12px" }}>✓</div>
@@ -144,8 +144,7 @@ function SaveModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void }) 
           <>
             <div style={{ fontSize: "18px", fontWeight: 700, color: dark, marginBottom: "20px" }}>Save your protocol</div>
             <input
-              type="email"
-              value={email}
+              type="email" value={email}
               onChange={(e) => setEmail(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSave()}
               placeholder="your@email.com"
@@ -160,9 +159,7 @@ function SaveModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void }) 
               width: "100%", padding: "13px", background: navy, color: "#fff",
               border: "none", borderRadius: "8px", fontSize: "15px", fontWeight: 700,
               cursor: "pointer", fontFamily: "inherit",
-            }}>
-              Send to my email
-            </button>
+            }}>Send to my email</button>
           </>
         )}
       </div>
@@ -210,8 +207,6 @@ function ShareModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void })
           position: "absolute", top: "16px", right: "16px", background: "none", border: "none",
           fontSize: "20px", cursor: "pointer", color: muted, lineHeight: 1, padding: "4px",
         }}>×</button>
-
-        {/* Share card — this div is screenshotted */}
         <div ref={cardRef} style={{
           background: "#ffffff", borderRadius: "12px", padding: "24px",
           border: `1px solid ${border}`, marginBottom: "16px",
@@ -223,10 +218,7 @@ function ShareModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void })
             {recs.map((p) => (
               <div key={p.id} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <span style={{ fontSize: "15px", fontWeight: 700, color: dark }}>{p.name}</span>
-                <span style={{
-                  fontSize: "11px", fontWeight: 600, padding: "2px 8px", borderRadius: "100px",
-                  background: "#F0F4FF", color: navy,
-                }}>{p.goals[0]}</span>
+                <span style={{ fontSize: "11px", fontWeight: 600, padding: "2px 8px", borderRadius: "100px", background: "#F0F4FF", color: navy }}>{p.goals[0]}</span>
               </div>
             ))}
           </div>
@@ -235,23 +227,17 @@ function ShareModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void })
             <span style={{ fontSize: "12px", fontWeight: 700, color: navy }}>pep.ai</span>
           </div>
         </div>
-
-        {/* Action buttons */}
         <div style={{ display: "flex", gap: "8px" }}>
           <button onClick={handleCopy} style={{
             flex: 1, padding: "12px", background: "#F5F5F5", border: "none",
             borderRadius: "8px", fontSize: "14px", fontWeight: 600, color: dark,
             cursor: "pointer", fontFamily: "inherit",
-          }}>
-            {copied ? "Copied! ✓" : "Copy link"}
-          </button>
+          }}>{copied ? "Copied! ✓" : "Copy link"}</button>
           <button onClick={handleDownload} disabled={downloading} style={{
             flex: 1, padding: "12px", background: navy, border: "none",
             borderRadius: "8px", fontSize: "14px", fontWeight: 600, color: "#fff",
             cursor: downloading ? "wait" : "pointer", fontFamily: "inherit",
-          }}>
-            {downloading ? "Saving..." : "Download as image"}
-          </button>
+          }}>{downloading ? "Saving..." : "Download as image"}</button>
         </div>
       </div>
     </div>
@@ -284,8 +270,8 @@ function PeptideCard({
       borderLeft: `3px solid ${navy}`,
     }}>
       {/* Header */}
-      <div style={{ padding: "14px 16px 12px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+      <div style={{ padding: "24px 24px 0" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
           <span style={{
             fontSize: "10px", fontWeight: 700, padding: "2px 8px", borderRadius: "100px",
             background: navy, color: "#fff", letterSpacing: "0.04em",
@@ -293,107 +279,119 @@ function PeptideCard({
           {isBeginnerCard && (
             <span style={{
               fontSize: "10px", fontWeight: 700, padding: "2px 7px", borderRadius: "100px",
-              background: "#F0FDF4", color: "#166534", letterSpacing: "0.02em",
+              background: "#FEF3C7", color: "#92400E", letterSpacing: "0.02em",
             }}>Start here</span>
           )}
         </div>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
-          <div style={{ fontSize: "20px", fontWeight: 700, color: dark }}>{peptide.name}</div>
-          {!isMinimal && (
-            <Link href={`/peptides/${peptide.id}`} style={{ fontSize: "12px", color: navy, fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap" as const }}>
-              Full profile →
-            </Link>
-          )}
+
+        {/* Peptide name — dominant element */}
+        <div style={{ fontSize: "32px", fontWeight: 800, color: dark, lineHeight: 1.1, marginBottom: "6px" }}>
+          {peptide.name}
         </div>
+
+        {/* Goal tag — no label prefix */}
         {!isMinimal && (
-          <div style={{ fontSize: "14px", color: muted, marginTop: "4px" }}>{peptide.goals[0]}</div>
+          <div style={{ fontSize: "13px", color: muted, marginBottom: "4px" }}>{peptide.goals[0]}</div>
+        )}
+
+        {/* Full profile — secondary, below goal tag */}
+        {!isMinimal && (
+          <Link href={`/peptides/${peptide.id}`} style={{ fontSize: "12px", color: muted, textDecoration: "none", display: "inline-block", marginBottom: "0" }}>
+            Full profile →
+          </Link>
         )}
       </div>
 
-      {/* Q4 injection fallback note */}
-      {injectionFallback && (
-        <div style={{ padding: "0 16px 14px" }}>
-          <div style={{ background: "#FFF8F0", borderRadius: "8px", padding: "10px 12px" }}>
+      {/* Content sections — all 24px side padding */}
+      <div style={{ padding: "20px 24px 0" }}>
+
+        {/* Q4 injection fallback note */}
+        {injectionFallback && (
+          <div style={{ background: "#FFF8F0", borderRadius: "8px", padding: "10px 12px", marginBottom: "16px" }}>
             <p style={{ fontSize: "12px", color: "#92400E", margin: 0, lineHeight: 1.5 }}>
               This peptide works best via injection but oral options exist — ask your clinician about oral BPC-157 or nasal alternatives.
             </p>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Q4 nervous reassurance */}
-      {showInjectionNote && (
-        <div style={{ padding: "0 16px 14px" }}>
-          <div style={{ background: "#F0F9FF", borderRadius: "8px", padding: "10px 12px" }}>
+        {/* Q4 nervous reassurance */}
+        {showInjectionNote && (
+          <div style={{ background: "#F0F9FF", borderRadius: "8px", padding: "10px 12px", marginBottom: "16px" }}>
             <p style={{ fontSize: "12px", color: "#0369A1", margin: 0, lineHeight: 1.5 }}>
               Subcutaneous injection is similar to what diabetics do daily — most people describe it as barely noticeable.
             </p>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Q6 science */}
-      {showScience && (
-        <div style={{ padding: "0 16px 14px" }}>
-          <div style={labelStyle}>How it works</div>
-          <p style={{ fontSize: "13px", color: "#444", lineHeight: 1.6, margin: 0 }}>{peptide.howItWorks}</p>
-        </div>
-      )}
+        {/* Q6 science */}
+        {showScience && (
+          <div style={{ marginBottom: "16px" }}>
+            <div style={labelStyle}>How it works</div>
+            <p style={{ fontSize: "13px", color: "#444", lineHeight: 1.6, margin: 0 }}>{peptide.howItWorks}</p>
+          </div>
+        )}
 
-      {/* Q6 social — editorial quote, no label */}
-      {showSocial && socialProof[peptide.id] && (
-        <div style={{ padding: "0 16px 14px" }}>
-          <div style={{ borderLeft: "2px solid #EBEBEB", paddingLeft: "12px" }}>
-            <p style={{ fontSize: "15px", color: "#333333", lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>
+        {/* Q6 social — editorial quote */}
+        {showSocial && socialProof[peptide.id] && (
+          <div style={{ borderLeft: "2px solid #EBEBEB", paddingLeft: "14px", marginBottom: "16px" }}>
+            <p style={{ fontSize: "15px", color: "#333333", lineHeight: 1.7, margin: 0, fontStyle: "italic" }}>
               &ldquo;{socialProof[peptide.id]}&rdquo;
             </p>
           </div>
-        </div>
-      )}
-
-      {/* Dosing row */}
-      <div style={{ padding: "0 16px 14px", display: "flex", gap: "20px", flexWrap: "wrap" as const }}>
-        <div>
-          <div style={labelStyle}>Dosing</div>
-          <div style={{ fontSize: "13px", color: dark }}>{peptide.dosing.split(",")[0]}</div>
-        </div>
-        <div>
-          <div style={labelStyle}>Method</div>
-          <div style={{ fontSize: "13px", color: dark, textTransform: "capitalize" as const }}>{peptide.method}</div>
-        </div>
-        {showCost && monthlyEstimate[peptide.id] && (
-          <div>
-            <div style={labelStyle}>Est. cost</div>
-            <div style={{ fontSize: "13px", color: dark }}>{monthlyEstimate[peptide.id]}</div>
-          </div>
         )}
+
+        {/* Dosing row */}
+        <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" as const, marginBottom: "20px" }}>
+          <div>
+            <div style={labelStyle}>Dosing</div>
+            <div style={{ fontSize: "13px", color: dark }}>{peptide.dosing.split(",")[0]}</div>
+          </div>
+          <div>
+            <div style={labelStyle}>Method</div>
+            <div style={{ fontSize: "13px", color: dark, textTransform: "capitalize" as const }}>{peptide.method}</div>
+          </div>
+          {showCost && monthlyEstimate[peptide.id] && (
+            <div>
+              <div style={labelStyle}>Est. cost</div>
+              <div style={{ fontSize: "13px", color: dark }}>{monthlyEstimate[peptide.id]}</div>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Vendor row */}
+      {/* Vendor section — separated by top border, 24px padding */}
       {peptideVendors.length > 0 && (
-        <div style={{ padding: "12px 16px", borderTop: `1px solid ${border}`, display: "flex", flexDirection: "column" as const, gap: "10px" }}>
+        <div style={{ padding: "20px 24px 24px", borderTop: `1px solid ${border}` }}>
           <div style={labelStyle}>Best sources</div>
-          {peptideVendors.map((v) => (
-            <div key={v.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-                <div style={{ fontSize: "14px", fontWeight: 600, color: dark }}>{v.name}</div>
-                {v.badge && (
-                  <span style={{
-                    fontSize: "10px", fontWeight: 600, padding: "3px 8px", borderRadius: "100px",
-                    background: v.badge === "Best Value" ? "#4CAF50" : navy,
-                    color: "#fff", whiteSpace: "nowrap" as const,
-                  }}>{v.badge}</span>
-                )}
+          <div style={{ display: "flex", flexDirection: "column" as const, gap: "14px" }}>
+            {peptideVendors.map((v) => (
+              <div key={v.id}>
+                {/* Vendor name + badge on one line */}
+                <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "8px" }}>
+                  <div style={{ fontSize: "14px", fontWeight: 600, color: dark }}>{v.name}</div>
+                  {v.badge && (
+                    <span style={{
+                      fontSize: "10px", fontWeight: 600, padding: "3px 8px", borderRadius: "100px",
+                      background: v.badge === "Best Value" ? amber : navy,
+                      color: "#fff", whiteSpace: "nowrap" as const,
+                    }}>{v.badge}</span>
+                  )}
+                </div>
+                {/* Full-width Best Source button below */}
+                <a
+                  href={buildAffiliateUrl(v.affiliateBase, v.utmSource, v.utmMedium, peptide.id)}
+                  target="_blank" rel="noopener noreferrer sponsored"
+                  style={{
+                    display: "block", textAlign: "center",
+                    background: navy, color: "#fff", fontSize: "14px", fontWeight: 700,
+                    padding: "12px 16px", borderRadius: "8px", textDecoration: "none",
+                  }}
+                >
+                  Best Source →
+                </a>
               </div>
-              <a
-                href={buildAffiliateUrl(v.affiliateBase, v.utmSource, v.utmMedium, peptide.id)}
-                target="_blank" rel="noopener noreferrer sponsored"
-                style={{ background: navy, color: "#fff", fontSize: "12px", fontWeight: 700, padding: "8px 14px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" as const, flexShrink: 0 }}
-              >
-                Best Source →
-              </a>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -403,43 +401,49 @@ function PeptideCard({
 // ── Q6 guided ─────────────────────────────────────────────────────────────────
 function GettingStarted({ recs }: { recs: Peptide[] }) {
   return (
-    <div style={{ marginTop: "24px", padding: "16px", background: "#F9F9F9", border: `1px solid ${border}`, borderRadius: "12px" }}>
-      <div style={{ fontSize: "15px", fontWeight: 700, color: dark, marginBottom: "14px" }}>Getting started — step by step</div>
+    <div style={{ marginTop: "24px", padding: "24px", background: "#F8F8F8", borderRadius: "8px" }}>
+      <div style={{ fontSize: "18px", fontWeight: 700, color: dark, marginBottom: "20px" }}>
+        Getting started — step by step
+      </div>
       {[
         `Order ${recs.map(p => p.name).join(" + ")} from one of the vetted vendors above.`,
         "Watch our injection tutorial before your first dose — it takes 2 minutes.",
         "Start your protocol on day 1. Track how you feel weekly. Most effects show within 2–4 weeks.",
       ].map((step, i) => (
-        <div key={i} style={{ display: "flex", gap: "12px", marginBottom: i < 2 ? "12px" : 0 }}>
-          <div style={{ width: "22px", height: "22px", borderRadius: "50%", border: `2px solid ${navy}`, color: navy, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 700, flexShrink: 0, marginTop: "1px" }}>
+        <div key={i} style={{ display: "flex", gap: "14px", marginBottom: i < 2 ? "18px" : 0 }}>
+          <div style={{
+            width: "24px", height: "24px", borderRadius: "50%",
+            background: navy, color: "#fff",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: "12px", fontWeight: 700, flexShrink: 0, marginTop: "1px",
+          }}>
             {i + 1}
           </div>
-          <p style={{ fontSize: "14px", color: "#444", lineHeight: 1.5, margin: 0 }}>{step}</p>
+          <p style={{ fontSize: "15px", color: "#333333", lineHeight: 1.7, margin: 0 }}>{step}</p>
         </div>
       ))}
     </div>
   );
 }
 
-// ── Results content (client) ──────────────────────────────────────────────────
+// ── Results content ───────────────────────────────────────────────────────────
 function ResultsContent() {
   const searchParams = useSearchParams();
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
 
-  const goals         = (searchParams.get("goals")      ?? "recovery").split(",").filter(Boolean);
-  const experience    = searchParams.get("experience")  ?? "basic";
-  const injectionPref = searchParams.get("injection")   ?? "fine";
-  const budget        = searchParams.get("budget")      ?? "medium";
-  const displayStyle  = searchParams.get("style")       ?? "minimal";
-  const topConcern    = (searchParams.get("concern")    ?? "").split(",")[0];
+  const goals         = (searchParams.get("goals")    ?? "recovery").split(",").filter(Boolean);
+  const experience    = searchParams.get("experience") ?? "basic";
+  const injectionPref = searchParams.get("injection")  ?? "fine";
+  const budget        = searchParams.get("budget")     ?? "medium";
+  const displayStyle  = searchParams.get("style")      ?? "minimal";
+  const topConcern    = (searchParams.get("concern")   ?? "").split(",")[0];
 
   const isBeginnerCard = experience === "beginner";
   const showCost = budget === "low" || budget === "unlimited";
 
   const { recs, injectionFallback } = getRecommendations(goals, experience, injectionPref, budget);
 
-  // Listen for "Share results" click dispatched from NavBar
   useEffect(() => {
     const handler = () => setShowShareModal(true);
     window.addEventListener("pep:share", handler);
@@ -447,13 +451,13 @@ function ResultsContent() {
   }, []);
 
   return (
-    <div style={{ padding: "24px 20px 48px" }}>
-      {/* Header */}
-      <div style={{ marginBottom: "20px" }}>
-        <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: muted, margin: "0 0 6px" }}>
+    <div style={{ padding: "32px 20px 56px" }}>
+      {/* Header — 32px breathing room */}
+      <div style={{ marginBottom: "32px" }}>
+        <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: muted, margin: "0 0 8px" }}>
           Your Protocol
         </p>
-        <h1 className={syne.className} style={{ fontSize: "30px", fontWeight: 800, color: dark, margin: "0 0 6px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
+        <h1 className={syne.className} style={{ fontSize: "30px", fontWeight: 800, color: dark, margin: "0 0 8px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
           Your Protocol is Ready.
         </h1>
         <p style={{ fontSize: "14px", color: muted, margin: 0 }}>Personalized to your goals.</p>
@@ -461,15 +465,15 @@ function ResultsContent() {
 
       {/* Q2 concern reassurance */}
       {concernReassurance[topConcern] && (
-        <div style={{ background: "#EEF4FF", borderRadius: "8px", padding: "10px 14px", marginBottom: "16px" }}>
+        <div style={{ background: "#EEF4FF", borderRadius: "8px", padding: "12px 16px", marginBottom: "24px" }}>
           <p style={{ fontSize: "13px", color: "#3B5998", margin: 0, lineHeight: 1.5 }}>
             {concernReassurance[topConcern]}
           </p>
         </div>
       )}
 
-      {/* Peptide cards */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "20px" }}>
+      {/* Peptide cards — 16px gap */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
         {recs.map((peptide, i) => (
           <PeptideCard
             key={peptide.id} peptide={peptide} index={i}
@@ -482,27 +486,44 @@ function ResultsContent() {
 
       {displayStyle === "guided" && <GettingStarted recs={recs} />}
 
-      <p style={{ fontSize: "11px", color: "#AAAAAA", textAlign: "center", margin: "20px 0" }}>
+      <p style={{ fontSize: "11px", color: "#AAAAAA", textAlign: "center", margin: "28px 0 20px" }}>
         * Affiliate links — we earn a commission at no extra cost to you.
       </p>
 
-      {/* Bottom buttons */}
+      {/* Bottom buttons — Save → Browse → Retake */}
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <Link href="/quiz" style={{ display: "block", textAlign: "center", padding: "16px", background: "#FFFFFF", border: `1px solid ${navy}`, borderRadius: "10px", fontSize: "16px", fontWeight: 700, color: navy, textDecoration: "none" }}>
-          ← Retake Quiz
-        </Link>
+        {/* Primary: Save My Protocol */}
         <button
           onClick={() => setShowSaveModal(true)}
-          style={{ display: "block", width: "100%", textAlign: "center", padding: "16px", background: "#4CAF50", border: "none", borderRadius: "10px", fontSize: "16px", fontWeight: 700, color: "#fff", cursor: "pointer", fontFamily: "inherit" }}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+            width: "100%", height: "56px", background: navy, border: "none",
+            borderRadius: "10px", fontSize: "16px", fontWeight: 700, color: "#fff",
+            cursor: "pointer", fontFamily: "inherit",
+          }}
         >
+          <span style={{ fontFamily: '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif' }}>🔖</span>
           Save My Protocol
         </button>
-        <Link href="/peptides" style={{ display: "block", textAlign: "center", padding: "16px", background: navy, borderRadius: "10px", fontSize: "16px", fontWeight: 700, color: "#fff", textDecoration: "none" }}>
+
+        {/* Secondary: Browse All Peptides — ghost */}
+        <Link href="/peptides" style={{
+          display: "block", textAlign: "center", height: "56px", lineHeight: "56px",
+          background: "#FFFFFF", border: `1px solid ${navy}`,
+          borderRadius: "10px", fontSize: "16px", fontWeight: 700, color: navy, textDecoration: "none",
+        }}>
           Browse All Peptides
+        </Link>
+
+        {/* Tertiary: Retake Quiz — plain text link */}
+        <Link href="/quiz" style={{
+          display: "block", textAlign: "center", padding: "12px",
+          fontSize: "14px", fontWeight: 500, color: muted, textDecoration: "none",
+        }}>
+          ← Retake Quiz
         </Link>
       </div>
 
-      {/* Modals */}
       {showSaveModal && <SaveModal recs={recs} onClose={() => setShowSaveModal(false)} />}
       {showShareModal && <ShareModal recs={recs} onClose={() => setShowShareModal(false)} />}
     </div>
