@@ -71,8 +71,8 @@
       "subtitle": "This shapes how your results are presented.",
       "options": [
         { "value": "minimal", "label": "Just tell me what to take and where to buy",  "emoji": "⚡" },
-        { "value": "science", "label": "Give me the science so I understand why",     "emoji": "🔬" },
-        { "value": "social",  "label": "Show me what other people have experienced",  "emoji": "👥" },
+        { "value": "science", "label": "Give me the science behind it",               "emoji": "🔬" },
+        { "value": "social",  "label": "Show me what others have experienced",        "emoji": "👥" },
         { "value": "guided",  "label": "Walk me through everything step by step",     "emoji": "📖" }
       ]
     }

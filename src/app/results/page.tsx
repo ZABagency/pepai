@@ -164,8 +164,17 @@ function PeptideCard({
             {peptideVendors.map((v) => (
               <div key={v.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
                 <div>
-                  <div style={{ fontSize: "14px", fontWeight: 600, color: dark }}>{v.name}</div>
-                  <div style={{ fontSize: "12px", color: muted }}>{v.qualityTier} grade · {v.priceRange}</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "2px" }}>
+                    <div style={{ fontSize: "14px", fontWeight: 600, color: dark }}>{v.name}</div>
+                    {v.badge && (
+                      <span style={{
+                        fontSize: "10px", fontWeight: 700, padding: "2px 7px", borderRadius: "100px",
+                        background: v.badge === "Best Value" ? "#ECFDF5" : "#EFF6FF",
+                        color: v.badge === "Best Value" ? "#065F46" : "#1E40AF",
+                        letterSpacing: "0.02em", textTransform: "uppercase" as const,
+                      }}>{v.badge}</span>
+                    )}
+                  </div>
                 </div>
                 <a
                   href={buildAffiliateUrl(v.affiliateBase, v.utmSource, v.utmMedium, peptide.id)}
