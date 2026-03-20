@@ -1,76 +1,80 @@
 {
   "questions": [
     {
-      "id": "goal",
-      "question": "What's your primary health goal?",
-      "subtitle": "Pick the one that matters most to you right now.",
-      "type": "single",
+      "id": "goals",
+      "type": "multi",
+      "maxSelect": 3,
+      "question": "What are your goals?",
+      "subtitle": "Select up to 3 — we'll build your stack around all of them.",
       "options": [
-        { "value": "recovery", "label": "Injury Recovery & Healing", "emoji": "🩹" },
-        { "value": "bodycomp", "label": "Muscle & Body Composition", "emoji": "💪" },
-        { "value": "sleep", "label": "Better Sleep & Recovery", "emoji": "😴" },
-        { "value": "cognitive", "label": "Focus & Mental Performance", "emoji": "🧠" },
-        { "value": "fatloss", "label": "Fat Loss & Metabolism", "emoji": "🔥" },
-        { "value": "antiaging", "label": "Anti-Aging & Longevity", "emoji": "⏳" },
-        { "value": "anxiety", "label": "Stress & Anxiety Relief", "emoji": "🧘" },
-        { "value": "skin", "label": "Skin, Hair & Collagen", "emoji": "✨" },
-        { "value": "energy", "label": "Energy & Cellular Health", "emoji": "⚡" }
+        { "value": "muscle",    "label": "Build muscle / lose fat",                   "emoji": "💪" },
+        { "value": "energy",    "label": "More energy and sharper focus",              "emoji": "⚡" },
+        { "value": "recovery",  "label": "Recover faster from injury or training",    "emoji": "💊" },
+        { "value": "sleep",     "label": "Better sleep and less stress",               "emoji": "🌙" },
+        { "value": "antiaging", "label": "Anti-aging and long term health",            "emoji": "⏳" },
+        { "value": "skin",      "label": "Better skin and appearance",                 "emoji": "✨" }
+      ]
+    },
+    {
+      "id": "concern",
+      "type": "rank",
+      "question": "What worries you most about starting?",
+      "subtitle": "1 = biggest concern · 5 = least · drag to reorder",
+      "options": [
+        { "value": "safety",    "label": "Is it actually safe?",               "emoji": "🛡️" },
+        { "value": "efficacy",  "label": "Does it actually work?",             "emoji": "🔬" },
+        { "value": "sourcing",  "label": "Where do I buy legitimate product?", "emoji": "🏪" },
+        { "value": "injection", "label": "The self-injection part",            "emoji": "💉" },
+        { "value": "cost",      "label": "Whether it's worth the cost",        "emoji": "💸" }
       ]
     },
     {
       "id": "experience",
-      "question": "How familiar are you with peptides?",
-      "subtitle": "Be honest — this helps us match you to the right starting point.",
       "type": "single",
+      "question": "Where are you starting from?",
+      "subtitle": "Be honest. This shapes your whole recommendation.",
       "options": [
-        { "value": "none", "label": "Never used them, complete beginner", "emoji": "👶" },
-        { "value": "some", "label": "Done some research, haven't started", "emoji": "📚" },
-        { "value": "used", "label": "I've used peptides before", "emoji": "✅" }
+        { "value": "beginner",    "label": "Brand new — no routine yet",              "emoji": "🌱" },
+        { "value": "basic",       "label": "Basic routine, nothing advanced",         "emoji": "📈" },
+        { "value": "optimized",   "label": "Already dialed in — sleep, training, diet", "emoji": "🎯" },
+        { "value": "experienced", "label": "Used peptides before, want to level up",  "emoji": "🔄" }
       ]
     },
     {
       "id": "injection",
-      "question": "Are you comfortable with self-injection?",
-      "subtitle": "Some peptides require a small subcutaneous injection (like an insulin shot). Others are nasal spray or topical.",
       "type": "single",
+      "question": "How do you feel about self-injection?",
+      "subtitle": "No wrong answer. This shapes what we recommend.",
       "options": [
-        { "value": "yes", "label": "Yes, I'm fine with injections", "emoji": "💉" },
-        { "value": "maybe", "label": "I'd try it with proper guidance", "emoji": "🤔" },
-        { "value": "no", "label": "No, I prefer non-injectable options", "emoji": "🙅" }
+        { "value": "no",      "label": "Hard no — oral or nasal options only",        "emoji": "🚫" },
+        { "value": "nervous", "label": "Nervous but open if the results are real",    "emoji": "😬" },
+        { "value": "fine",    "label": "Fine with it — willing to learn",             "emoji": "👍" },
+        { "value": "yes",     "label": "Already injecting — not an issue",            "emoji": "💪" }
       ]
     },
     {
       "id": "budget",
-      "question": "What's your monthly budget for peptides?",
-      "subtitle": "This helps us recommend the right vendors and protocols.",
       "type": "single",
+      "question": "What's your monthly budget?",
+      "subtitle": "Best value first, not just the most expensive.",
       "options": [
-        { "value": "low", "label": "Under $100/month", "emoji": "💵" },
-        { "value": "medium", "label": "$100–$250/month", "emoji": "💰" },
-        { "value": "high", "label": "$250+ per month", "emoji": "💎" }
+        { "value": "low",       "label": "Under $75 — want to test the waters",  "emoji": "💵" },
+        { "value": "medium",    "label": "$75–$150 — ready to commit",           "emoji": "💰" },
+        { "value": "high",      "label": "$150–$300 — serious about results",    "emoji": "💎" },
+        { "value": "unlimited", "label": "$300+ — show me everything",           "emoji": "🚀" }
       ]
     },
     {
-      "id": "timeline",
-      "question": "When do you want to start seeing results?",
-      "subtitle": "Some peptides work fast, others build over months.",
+      "id": "style",
       "type": "single",
+      "question": "How do you like to receive information?",
+      "subtitle": "This shapes how your results are presented.",
       "options": [
-        { "value": "fast", "label": "ASAP — I want quick results", "emoji": "⚡" },
-        { "value": "steady", "label": "I'm patient, I want steady progress", "emoji": "📈" },
-        { "value": "longterm", "label": "I'm playing the long game", "emoji": "🎯" }
+        { "value": "minimal", "label": "Just tell me what to take and where to buy",  "emoji": "⚡" },
+        { "value": "science", "label": "Give me the science so I understand why",     "emoji": "🔬" },
+        { "value": "social",  "label": "Show me what other people have experienced",  "emoji": "👥" },
+        { "value": "guided",  "label": "Walk me through everything step by step",     "emoji": "📖" }
       ]
     }
-  ],
-  "recommendations": {
-    "recovery": ["bpc-157", "tb-500"],
-    "bodycomp": ["cjc-1295", "ipamorelin"],
-    "sleep": ["ipamorelin", "dsip"],
-    "cognitive": ["semax", "selank"],
-    "fatloss": ["aod-9604", "cjc-1295"],
-    "antiaging": ["epithalon", "ghk-cu"],
-    "anxiety": ["selank", "semax"],
-    "skin": ["ghk-cu", "epithalon"],
-    "energy": ["nad-plus", "ipamorelin"]
-  }
+  ]
 }
