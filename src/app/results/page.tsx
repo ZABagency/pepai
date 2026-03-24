@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import { Suspense, useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { Syne } from "next/font/google";
@@ -33,11 +34,11 @@ const oralNasalSafe = new Set(["bpc-157", "semax", "selank", "ghk-cu", "nad-plus
 
 // ── Q2: Concern → reassurance copy ───────────────────────────────────────────
 const concernReassurance: Record<string, string> = {
-  safety:    "Every peptide in your protocol has a strong safety profile. Here's what the research shows.",
-  efficacy:  "These peptides have the strongest evidence behind them for your specific goals.",
-  sourcing:  "We only recommend vendors we'd use ourselves. Every source below is vetted.",
-  injection: "We've selected protocols with the least intimidating administration methods for your stack.",
-  cost:      "We've prioritized the best value options for your budget without compromising quality.",
+  safety:    "Every peptide here has a strong safety profile.",
+  efficacy:  "These peptides have the strongest evidence for your goals.",
+  sourcing:  "Every vendor below is vetted — we'd use them ourselves.",
+  injection: "We've selected the least intimidating administration methods for your stack.",
+  cost:      "Best value options for your budget, no quality compromises.",
 };
 
 const socialProof: Record<string, string> = {
@@ -65,6 +66,26 @@ const goalLabel: Record<string, string> = {
   muscle: "Body Comp & Fat Loss", energy: "Energy & Focus",
   recovery: "Recovery & Healing", sleep: "Sleep & Stress",
   antiaging: "Anti-Aging & Longevity", skin: "Skin & Appearance",
+};
+
+const methodDisplay: Record<string, string> = {
+  injection: "SubQ injection",
+  nasal: "Nasal drops",
+  topical: "Topical serum",
+};
+
+const sideEffects: Record<string, string> = {
+  "bpc-157":    "Generally very well tolerated. Some report mild nausea or lightheadedness at higher doses. No significant adverse effects in research at standard doses.",
+  "tb-500":     "Well tolerated. Occasional mild fatigue or flu-like symptoms in the first week. No serious adverse effects reported at standard doses.",
+  "ipamorelin": "Very clean profile — no significant cortisol or prolactin spikes. Some experience mild water retention or tingling hands early on, which typically resolves.",
+  "cjc-1295":   "Similar to Ipamorelin. Temporary water retention or mild hunger increase possible in early weeks. Generally subsides as the body adapts.",
+  "aod-9604":   "Excellent safety profile — no effects on blood sugar or IGF-1. Mild injection site redness possible. One of the safest peptides in the literature.",
+  "semax":      "Well tolerated at standard doses. Some report mild headache or heightened anxiety if doses are too high. Start at the lower end and titrate up.",
+  "selank":     "Very safe profile. Occasional mild fatigue after use. No dependence, tolerance, or withdrawal effects reported.",
+  "dsip":       "Generally mild. Some report next-day grogginess at higher doses. Best to start at 100 mcg and adjust based on response.",
+  "epithalon":  "Very well tolerated in studies spanning decades. Rare reports of mild fatigue during the active cycle. No serious adverse effects noted.",
+  "ghk-cu":     "Topically very safe with minimal risk. Occasional mild skin sensitivity when switching to a new formulation. Extremely low risk profile overall.",
+  "nad-plus":   "IV administration can cause flushing, nausea, or chest tightness — these are dose-dependent and subside after infusion. SubQ injection is much gentler with few side effects.",
 };
 
 // ── Vendor selection ──────────────────────────────────────────────────────────
@@ -174,7 +195,7 @@ function ShareModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void })
   const cardRef = useRef<HTMLDivElement>(null);
 
   function handleCopy() {
-    navigator.clipboard.writeText("pep.ai");
+    navigator.clipboard.writeText("pepty.ai");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
@@ -212,7 +233,7 @@ function ShareModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void })
           border: `1px solid ${border}`, marginBottom: "16px",
         }}>
           <div className={syne.className} style={{ fontSize: "20px", fontWeight: 800, color: dark, marginBottom: "16px", letterSpacing: "-0.02em" }}>
-            My Pep AI Protocol
+            My Pepty AI Protocol
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px" }}>
             {recs.map((p) => (
@@ -224,7 +245,7 @@ function ShareModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void })
           </div>
           <div style={{ borderTop: `1px solid ${border}`, paddingTop: "12px" }}>
             <span style={{ fontSize: "12px", color: muted }}>Get yours at </span>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: navy }}>pep.ai</span>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: navy }}>pepty.ai</span>
           </div>
         </div>
         <div style={{ display: "flex", gap: "8px" }}>
@@ -244,6 +265,187 @@ function ShareModal({ recs, onClose }: { recs: Peptide[]; onClose: () => void })
   );
 }
 
+// ── Peptide profile sheet ─────────────────────────────────────────────────────
+function PeptideSheet({ peptide, budget, onClose }: { peptide: Peptide; budget: string; onClose: () => void }) {
+  const [visible, setVisible] = useState(false);
+  const sheetVendors = getVendorsForPeptide(peptide.id, budget, false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setVisible(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  function handleClose() {
+    setVisible(false);
+    setTimeout(onClose, 250);
+  }
+
+  const sl = {
+    fontSize: "11px", fontWeight: 600, color: "#AAAAAA",
+    textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: "8px",
+  };
+
+  const gcl = {
+    fontSize: "10px", fontWeight: 600, color: "#AAAAAA",
+    textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: "3px",
+  };
+
+  const body15 = { fontSize: "15px", color: "#333333", lineHeight: 1.7, margin: 0 };
+
+  return createPortal(
+    <>
+      {/* Backdrop */}
+      <div
+        style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.4)", zIndex: 999 }}
+        onClick={handleClose}
+      />
+
+      {/* Sheet */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          position: "fixed",
+          bottom: 0, left: "50%",
+          width: "100%",
+          maxWidth: "480px",
+          maxHeight: "85vh",
+          overflowY: "auto",
+          WebkitOverflowScrolling: "touch" as never,
+          borderRadius: "20px 20px 0 0",
+          background: "#ffffff",
+          zIndex: 1000,
+          boxSizing: "border-box",
+          padding: "0 20px 40px 20px",
+          transform: visible ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(100%)",
+          transition: visible ? "transform 300ms ease-out" : "transform 250ms ease-in",
+        }}
+      >
+        {/* Handle + close */}
+        <div style={{ paddingTop: "12px", position: "relative", marginBottom: "4px" }}>
+          <div style={{ width: "36px", height: "4px", background: "#DDDDDD", borderRadius: "2px", margin: "0 auto 12px" }} />
+          <button
+            onClick={handleClose}
+            style={{
+              position: "absolute", top: "12px", right: 0,
+              background: "none", border: "none", fontSize: "20px",
+              color: "#888888", cursor: "pointer", lineHeight: 1, padding: "4px",
+            }}
+          >×</button>
+        </div>
+
+        <div>
+          {/* Name */}
+          <div className={syne.className} style={{
+            fontSize: "26px", fontWeight: 800, color: dark,
+            letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "8px",
+          }}>
+            {peptide.name}
+          </div>
+
+          {/* Goal pill */}
+          <span style={{
+            display: "inline-block", fontSize: "12px", fontWeight: 600,
+            padding: "3px 10px", borderRadius: "100px",
+            background: "#F0F4FF", color: navy, marginBottom: "24px",
+          }}>{peptide.goals[0]}</span>
+
+          {/* What it does */}
+          <div style={{ marginBottom: "20px" }}>
+            <div style={sl}>What it does</div>
+            <p style={body15}>{peptide.shortDescription} {peptide.whatItIs}</p>
+          </div>
+
+          {/* How to take it */}
+          <div style={{ marginBottom: "20px" }}>
+            <div style={sl}>How to take it</div>
+            <div style={{ background: "#F8F8F8", borderRadius: "12px", padding: "12px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "10px" }}>
+                <div>
+                  <div style={gcl}>Dose</div>
+                  <div style={{ fontSize: "14px", color: "#333" }}>{peptide.dose}</div>
+                </div>
+                <div>
+                  <div style={gcl}>Method</div>
+                  <div style={{ fontSize: "14px", color: "#333" }}>{methodDisplay[peptide.method] ?? peptide.method}</div>
+                </div>
+                <div>
+                  <div style={gcl}>Frequency</div>
+                  <div style={{ fontSize: "14px", color: "#333" }}>{peptide.frequency}</div>
+                </div>
+                <div>
+                  <div style={gcl}>Timing</div>
+                  <div style={{ fontSize: "14px", color: "#333" }}>{peptide.timing}</div>
+                </div>
+              </div>
+              <div style={{ fontSize: "12px", color: muted }}>Cycle: {peptide.cycleLength}</div>
+            </div>
+          </div>
+
+          {/* What to expect */}
+          <div style={{ marginBottom: "20px" }}>
+            <div style={sl}>What to expect</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              {peptide.weekByWeek.map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                  <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: navy, flexShrink: 0, marginTop: "9px" }} />
+                  <span style={body15}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Best for */}
+          <div style={{ marginBottom: "20px" }}>
+            <div style={sl}>Best for</div>
+            <p style={body15}>{peptide.bestFor}</p>
+          </div>
+
+          {/* Side effects */}
+          <div style={{ marginBottom: "24px" }}>
+            <div style={sl}>Side effects to know</div>
+            <p style={body15}>{sideEffects[peptide.id]}</p>
+          </div>
+
+          {/* Best sources */}
+          {sheetVendors.length > 0 && (
+            <div>
+              <div style={sl}>Best sources</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                {sheetVendors.map((v) => (
+                  <div key={v.id}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "7px", marginBottom: "8px" }}>
+                      <div style={{ fontSize: "14px", fontWeight: 600, color: dark }}>{v.name}</div>
+                      {v.badge && (
+                        <span style={{
+                          fontSize: "10px", fontWeight: 600, padding: "3px 8px", borderRadius: "100px",
+                          background: v.badge === "Best Value" ? amber : navy,
+                          color: "#fff", whiteSpace: "nowrap",
+                        }}>{v.badge}</span>
+                      )}
+                    </div>
+                    <a
+                      href={buildAffiliateUrl(v.affiliateBase, v.utmSource, v.utmMedium, peptide.id)}
+                      target="_blank" rel="noopener noreferrer sponsored"
+                      style={{
+                        display: "block", textAlign: "center",
+                        background: navy, color: "#fff", fontSize: "14px", fontWeight: 700,
+                        padding: "12px 16px", borderRadius: "8px", textDecoration: "none",
+                      }}
+                    >
+                      Best Source →
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </>,
+    document.body
+  );
+}
+
 // ── Peptide card ──────────────────────────────────────────────────────────────
 function PeptideCard({
   peptide, index, displayStyle, isBeginnerCard, injectionPref, injectionFallback, budget, showCost,
@@ -252,6 +454,7 @@ function PeptideCard({
   isBeginnerCard: boolean; injectionPref: string; injectionFallback: boolean;
   budget: string; showCost: boolean;
 }) {
+  const [showSheet, setShowSheet] = useState(false);
   const peptideVendors = getVendorsForPeptide(peptide.id, budget, isBeginnerCard);
   const isMinimal = displayStyle === "minimal";
   const showScience = displayStyle === "science";
@@ -262,6 +465,7 @@ function PeptideCard({
   const labelStyle = { fontSize: "12px", fontWeight: 600, color: muted, marginBottom: "4px" } as const;
 
   return (
+    <>
     <div style={{
       background: "#FFFFFF", borderRadius: "12px", overflow: "hidden",
       borderTop: `1px solid ${border}`,
@@ -270,35 +474,50 @@ function PeptideCard({
       borderLeft: `3px solid ${navy}`,
     }}>
       {/* Header */}
-      <div style={{ padding: "24px 24px 0" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px" }}>
-          <span style={{
-            fontSize: "10px", fontWeight: 700, padding: "2px 8px", borderRadius: "100px",
-            background: navy, color: "#fff", letterSpacing: "0.04em",
-          }}>{cardNum}</span>
-          {isBeginnerCard && (
+      <div style={{ padding: "24px 24px 0", position: "relative" }}>
+        {/* Badge row + info icon */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{
-              fontSize: "10px", fontWeight: 700, padding: "2px 7px", borderRadius: "100px",
-              background: "#FEF3C7", color: "#92400E", letterSpacing: "0.02em",
-            }}>Start here</span>
-          )}
+              fontSize: "10px", fontWeight: 700, padding: "2px 8px", borderRadius: "100px",
+              background: navy, color: "#fff", letterSpacing: "0.04em",
+            }}>{cardNum}</span>
+            {isBeginnerCard && (
+              <span style={{
+                fontSize: "10px", fontWeight: 700, padding: "2px 7px", borderRadius: "100px",
+                background: "#FEF3C7", color: "#92400E", letterSpacing: "0.02em",
+              }}>Start here</span>
+            )}
+          </div>
+          {/* Info icon */}
+          <button
+            onClick={() => setShowSheet(true)}
+            style={{
+              width: "20px", height: "20px", borderRadius: "50%",
+              border: `1.5px solid ${navy}`, background: "transparent",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer", padding: 0, flexShrink: 0,
+            }}
+            aria-label={`View ${peptide.name} profile`}
+          >
+            <span style={{ fontSize: "11px", fontWeight: 700, color: navy, lineHeight: 1 }}>i</span>
+          </button>
         </div>
 
-        {/* Peptide name — dominant element */}
-        <div style={{ fontSize: "32px", fontWeight: 800, color: dark, lineHeight: 1.1, marginBottom: "6px" }}>
-          {peptide.name}
-        </div>
+        {/* Peptide name — tappable, opens profile sheet */}
+        <button
+          onClick={() => setShowSheet(true)}
+          style={{
+            background: "none", border: "none", padding: 0, cursor: "pointer",
+            display: "block", textAlign: "left", marginBottom: "6px",
+          }}
+        >
+          <span style={{ fontSize: "32px", fontWeight: 800, color: dark, lineHeight: 1.1 }}>{peptide.name}</span>
+        </button>
 
         {/* Goal tag — no label prefix */}
         {!isMinimal && (
           <div style={{ fontSize: "13px", color: muted, marginBottom: "4px" }}>{peptide.goals[0]}</div>
-        )}
-
-        {/* Full profile — secondary, below goal tag */}
-        {!isMinimal && (
-          <Link href={`/peptides/${peptide.id}`} style={{ fontSize: "12px", color: muted, textDecoration: "none", display: "inline-block", marginBottom: "0" }}>
-            Full profile →
-          </Link>
         )}
       </div>
 
@@ -340,29 +559,43 @@ function PeptideCard({
           </div>
         )}
 
-        {/* Dosing row */}
-        <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" as const, marginBottom: "20px" }}>
-          <div>
-            <div style={labelStyle}>Dosing</div>
-            <div style={{ fontSize: "13px", color: dark }}>{peptide.dosing.split(",")[0]}</div>
-          </div>
-          <div>
-            <div style={labelStyle}>Method</div>
-            <div style={{ fontSize: "13px", color: dark, textTransform: "capitalize" as const }}>{peptide.method}</div>
-          </div>
-          {showCost && monthlyEstimate[peptide.id] && (
+        {/* Protocol grid */}
+        <div style={{
+          background: "#F8F8F8", borderRadius: "12px", padding: "12px",
+          marginBottom: "20px",
+        }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "10px" }}>
             <div>
-              <div style={labelStyle}>Est. cost</div>
-              <div style={{ fontSize: "13px", color: dark }}>{monthlyEstimate[peptide.id]}</div>
+              <div style={{ fontSize: "10px", fontWeight: 600, color: muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: "3px" }}>Dose</div>
+              <div style={{ fontSize: "14px", color: "#333333" }}>{peptide.dose}</div>
             </div>
-          )}
+            <div>
+              <div style={{ fontSize: "10px", fontWeight: 600, color: muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: "3px" }}>Method</div>
+              <div style={{ fontSize: "14px", color: "#333333" }}>{methodDisplay[peptide.method] ?? peptide.method}</div>
+            </div>
+            <div>
+              <div style={{ fontSize: "10px", fontWeight: 600, color: muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: "3px" }}>Frequency</div>
+              <div style={{ fontSize: "14px", color: "#333333" }}>{peptide.frequency}</div>
+            </div>
+            <div>
+              <div style={{ fontSize: "10px", fontWeight: 600, color: muted, textTransform: "uppercase" as const, letterSpacing: "0.06em", marginBottom: "3px" }}>Timing</div>
+              <div style={{ fontSize: "14px", color: "#333333" }}>{peptide.timing}</div>
+            </div>
+          </div>
+          <div style={{ fontSize: "12px", color: muted }}>Cycle: {peptide.cycleLength}</div>
         </div>
+
+        {showCost && monthlyEstimate[peptide.id] && (
+          <div style={{ marginBottom: "20px" }}>
+            <div style={labelStyle}>Est. cost</div>
+            <div style={{ fontSize: "13px", color: dark }}>{monthlyEstimate[peptide.id]}</div>
+          </div>
+        )}
       </div>
 
       {/* Vendor section — separated by top border, 24px padding */}
       {peptideVendors.length > 0 && (
-        <div style={{ padding: "20px 24px 24px", borderTop: `1px solid ${border}` }}>
-          <div style={labelStyle}>Best sources</div>
+        <div style={{ padding: "0 24px 24px", marginTop: "16px" }}>
           <div style={{ display: "flex", flexDirection: "column" as const, gap: "14px" }}>
             {peptideVendors.map((v) => (
               <div key={v.id}>
@@ -395,6 +628,11 @@ function PeptideCard({
         </div>
       )}
     </div>
+
+    {showSheet && (
+      <PeptideSheet peptide={peptide} budget={budget} onClose={() => setShowSheet(false)} />
+    )}
+  </>
   );
 }
 
@@ -465,8 +703,8 @@ function ResultsContent() {
 
       {/* Q2 concern reassurance */}
       {concernReassurance[topConcern] && (
-        <div style={{ background: "#EEF4FF", borderRadius: "8px", padding: "12px 16px", marginBottom: "24px" }}>
-          <p style={{ fontSize: "13px", color: "#3B5998", margin: 0, lineHeight: 1.5 }}>
+        <div style={{ background: "#F0F4FF", borderRadius: "8px", padding: "10px 14px", marginBottom: "24px" }}>
+          <p style={{ fontSize: "12px", color: "#3B5998", margin: 0, lineHeight: 1.4 }}>
             {concernReassurance[topConcern]}
           </p>
         </div>
@@ -496,13 +734,11 @@ function ResultsContent() {
         <button
           onClick={() => setShowSaveModal(true)}
           style={{
-            display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
             width: "100%", height: "56px", background: navy, border: "none",
             borderRadius: "10px", fontSize: "16px", fontWeight: 700, color: "#fff",
             cursor: "pointer", fontFamily: "inherit",
           }}
         >
-          <span style={{ fontFamily: '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif' }}>🔖</span>
           Save My Protocol
         </button>
 

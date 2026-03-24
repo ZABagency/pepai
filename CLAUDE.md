@@ -1,4 +1,4 @@
-# Pep AI — Project Memory
+# Pepty AI — Project Memory
 
 ## What this app is
 Peptide consulting app. Users take a 6-question quiz, get a personalized peptide stack recommendation, and get directed to vetted vendors via affiliate links.

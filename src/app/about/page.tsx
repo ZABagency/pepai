@@ -24,7 +24,7 @@ export default function AboutPage() {
         How We Make Money
       </h1>
       <p style={{ fontSize: "15px", color: muted, margin: "0 0 4px", lineHeight: 1.5 }}>
-        We believe transparency builds trust. Here&apos;s exactly how Pep AI works financially.
+        We believe transparency builds trust. Here&apos;s exactly how Pepty AI works financially.
       </p>
 
       <Section icon="🔗" title="1. Affiliate Commissions">
@@ -60,7 +60,7 @@ export default function AboutPage() {
 
       <Section icon="⚠️" title="Medical Disclaimer">
         <p style={{ margin: "0 0 10px" }}>
-          Pep AI is for <strong>informational purposes only</strong>. We are not medical professionals. Nothing on this site constitutes medical advice.
+          Pepty AI is for <strong>informational purposes only</strong>. We are not medical professionals. Nothing on this site constitutes medical advice.
         </p>
         <p style={{ margin: "0 0 10px" }}>
           Always consult a licensed clinician before starting any peptide protocol. Peptides are not FDA-approved for human consumption and are sold for research purposes only.

@@ -56,7 +56,7 @@ export default function Home() {
           fontSize: "15px", color: muted, lineHeight: 1.5,
           margin: "0 auto 28px", maxWidth: "240px",
         }}>
-          5 questions. A personalized peptide stack for your goals.
+          6 questions. A personalized peptide stack for your goals.
         </p>
 
         <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
@@ -87,7 +87,7 @@ export default function Home() {
       <div style={{ padding: "28px 20px", borderBottom: `1px solid ${borderLight}` }}>
         <div style={{ display: "flex", gap: "8px" }}>
           {[
-            { n: "1", title: "Answer 5 Qs", sub: "Goals, experience, budget." },
+            { n: "1", title: "Answer 6 Qs", sub: "Goals, experience, budget." },
             { n: "2", title: "Get matched", sub: "1–3 peptides for you." },
             { n: "3", title: "Buy safely", sub: "Vetted, disclosed sources." },
           ].map((item) => (

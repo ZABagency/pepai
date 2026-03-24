@@ -11,8 +11,8 @@ const inter = Inter({
 
 
 export const metadata: Metadata = {
-  title: "Pep AI — Find Your Protocol",
-  description: "Answer 5 questions and get a personalized peptide protocol. Pep AI matches you with the best peptides for your goals and where to get them safely.",
+  title: "Pepty AI — Find Your Protocol",
+  description: "Answer 6 questions and get a personalized peptide protocol. Pepty AI matches you with the best peptides for your goals and where to get them safely.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -26,7 +26,7 @@ export default function NavBar() {
 
       {/* Center — Logo */}
       <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "5px" }}>
-        <span style={{ fontSize: "20px", fontWeight: 700, color: "#111111", letterSpacing: "-0.02em" }}>Pep</span>
+        <span style={{ fontSize: "20px", fontWeight: 700, color: "#111111", letterSpacing: "-0.02em" }}>Pepty</span>
         <span style={{
           fontSize: "11px", fontWeight: 700, color: "#FFFFFF",
           background: "#1A1A2E", borderRadius: "100px",
